@@ -1,7 +1,14 @@
-.div {
+.square {
     background-color: black;
     display: inline-block;
     color: white;
     width: 2em;
     text-align: center;
+}
+
+.squareNumber {
+    color: black;
+}
+.square:hover .squareNumber {
+    color: white;
 }
