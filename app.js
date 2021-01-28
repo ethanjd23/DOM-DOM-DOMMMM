@@ -17,6 +17,7 @@ function loadDOM() {
 
     let buttonContainer = document.createElement("div")
     buttonContainer.className = "buttonContainer"
+    buttonContainer.id = "0"
     let button = document.createElement("button");
     button.className = "button"
     let buttonText = document.createTextNode("Add Square");
@@ -33,13 +34,9 @@ function addSquare() {
     let square = document.createElement("div")
     square.className = "square";
     square.id = buttonClicks;
-
-    let squareNumber = document.createElement("div");
-    squareNumber.className = "squareNumber"
-    let squareNumberText = document.createTextNode(buttonClicks);
-    squareNumber.appendChild(squareNumberText);
+    let squareText = document.createTextNode(buttonClicks);
+    square.appendChild(squareText);
     
-    square.appendChild(squareNumber);
     document.body.appendChild(square);
     buttonClicks++;
 
@@ -53,11 +50,14 @@ function colorChanger() {
     };
 
 function squareRemover() {
-    if(event.target.id % 2 == 0) {
-        let x = event.target.nextSibling
-        x.style.color = "blue";
+    let x = event.target.nextSibling
+    let y = event.target.previousSibling
+    if(x == null || y == null || y.id == 0) {
+        alert("No square to remove.");
+    } else if(event.target.id % 2 == 0) {
+        x.remove();
     }
-    else if(event.target.id % 2 == 1) {
-
+    else if(event.target.id % 2 == 1 && y.id > 0) {
+        y.remove();
     }
 }
